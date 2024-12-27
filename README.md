@@ -1,4 +1,7 @@
-# Uploading temperature sensor data in Thing Speak cloud
+# experiment 3 Uploading temperature sensor data in Thing Speak cloud
+NAME: SUPRIYA PRABHU
+
+REG NO: 24001111
 
 # AIM:
 To monitor the temperature sensor data in the Thing speak using an ESP32 controller.
@@ -71,10 +74,111 @@ Automatically act on your data and communicate using third-party services like T
 
 
 # PROGRAM:
+#include "ThingSpeak.h"
+
+#include <WiFi.h>
+
+#include "DHT.h"
+
+
+char ssid[] = "SUPRIYA";
+
+char pass[] = "Honeysup27";
+
+const int out = 23;
+
+long T;
+
+float temperature = 0;
+
+WiFiClient client;
+
+DHT dht(23, DHT11);
+
+unsigned long myChannelField = 2785413;
+
+const int TemperatureField = 1;
+
+const int HumidityField = 2;
+
+const char* myWriteAPIKey = "PFIMJM7T42XDF9FY";
+
+void setup()
+
+{
+ 
+  Serial.begin(115200);
+
+  pinMode(out, INPUT);
+ 
+  ThingSpeak.begin(client);
+ 
+  dht.begin();
+ 
+  delay(1000);
+
+}
+
+void loop()
+
+{
+ 
+  if (WiFi.status() != WL_CONNECTED)
+ 
+  {
+    
+    Serial.print("Attempting to connect to SSID: ");
+   
+    Serial.println(ssid);
+   
+    while (WiFi.status() != WL_CONNECTED)
+   
+    {
+     
+      WiFi.begin(ssid,pass);
+     
+      Serial.print(".");
+      
+      delay(5000);
+    }
+   
+    Serial.println("\nConnected.");
+  }
+  
+  float temperature = dht.readTemperature();
+ 
+  float humidity = dht.readHumidity();
+
+  Serial.print("Temperature: ");
+  
+  Serial.println(temperature);
+ 
+  Serial.println(" °C");
+
+  Serial.print("Humidity: ");
+ 
+  Serial.println(humidity);
+ 
+  Serial.println(" g.m-3");
+
+  ThingSpeak.writeField(myChannelField, TemperatureField, temperature, myWriteAPIKey);
+  
+  ThingSpeak.writeField(myChannelField, HumidityField, humidity, myWriteAPIKey);
+  
+  delay(100);
+
+}
+
 
 # CIRCUIT DIAGRAM:
 
+![ex3 iot c](https://github.com/user-attachments/assets/f1294364-3407-4cef-abe0-d6973a5a11cd)
+
 # OUTPUT:
+
+![ex3 iot i](https://github.com/user-attachments/assets/16b179ec-3e53-4546-bdba-dee2c962d490)
+
+![ex3 iot o](https://github.com/user-attachments/assets/da15cc53-e722-447d-a524-9befa9b739b1)
 
 # RESULT:
 
