@@ -1,4 +1,4 @@
-# experiment 3 Uploading temperature sensor data in Thing Speak cloud
+# Experiment 3 Uploading temperature sensor data in Thing Speak cloud
 NAME: SUPRIYA PRABHU
 
 REG NO: 24001111
@@ -74,6 +74,7 @@ Automatically act on your data and communicate using third-party services like T
 
 
 # PROGRAM:
+
 #include "ThingSpeak.h"
 
 #include <WiFi.h>
@@ -127,6 +128,7 @@ void loop()
  
   {
     
+  
     Serial.print("Attempting to connect to SSID: ");
    
     Serial.println(ssid);
@@ -140,10 +142,13 @@ void loop()
       Serial.print(".");
       
       delay(5000);
+  
     }
    
     Serial.println("\nConnected.");
+
   }
+  
   
   float temperature = dht.readTemperature();
  
