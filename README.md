@@ -1,10 +1,9 @@
 
-
 # NAME: SUPRIYA PRABHU 
 
 # REG NO: 24001111
 
-# Experiment 3 Uploading temperature sensor data in Thing Speak cloud
+# Experiment 3:-Uploading temperature sensor data in Thing Speak cloud
 
 # AIM:
 To monitor the temperature sensor data in the Thing speak using an ESP32 controller.
